@@ -1,0 +1,87 @@
+spring:
+    datasource:
+        url: jdbc:mysql://localhost:3306/spring_social?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
+        username: root
+        password:
+
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+            naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    security:
+      oauth2:
+        client:
+          registration:
+            apple:
+                clientId: ts.acs.hf.office.web
+                clientSecret: eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IjJUNThGTTNYN0EifQ.eyJpc3MiOiI2TVJMN1AzWFVKIiwiaWF0IjoxNjE5NDM1MTU4LCJleHAiOjE2MzQ5ODcxNTgsImF1ZCI6Imh0dHBzOi8vYXBwbGVpZC5hcHBsZS5jb20iLCJzdWIiOiJ0cy5hY3MuaGYub2ZmaWNlLndlYiJ9.cRFZxPWEYReINp6mUBXLJKhItZIJe6hKDTJq8EVNNXMWdSJ7QiPFP3mW31v0c5AQCJqjQ1UdaeUfRaYKibZVyw
+                privateKeyJwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsImtpZCI6IjJUNThGTTNYN0EifQ.eyJpc3MiOiI2TVJMN1AzWFVKIiwiaWF0IjoxNjE5NDM1MTU4LCJleHAiOjE2MzQ5ODcxNTgsImF1ZCI6Imh0dHBzOi8vYXBwbGVpZC5hcHBsZS5jb20iLCJzdWIiOiJ0cy5hY3MuaGYub2ZmaWNlLndlYiJ9.cRFZxPWEYReINp6mUBXLJKhItZIJe6hKDTJq8EVNNXMWdSJ7QiPFP3mW31v0c5AQCJqjQ1UdaeUfRaYKibZVyw
+                redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+                scope:
+                  - email
+                  - name
+                authorizationGrantType: authorization_code
+                responseMode: form_post
+                responseType: code
+            google:
+                clientId: 5014057553-8gm9um6vnli3cle5rgigcdjpdrid14m9.apps.googleusercontent.com
+                clientSecret: tWZKVLxaD_ARWsriiiUFYoIk
+                redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+                scope:
+                  - email
+                  - profile
+            facebook:
+                clientId: 121189305185277
+                clientSecret: 42ffe5aa7379e8326387e0fe16f34132
+                redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+                scope:
+                  - email
+                  - public_profile
+            github:
+                clientId: d3e47fc2ddd966fa4352
+                clientSecret: 3bc0f6b8332f93076354c2a5bada2f5a05aea60d
+                redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+                scope:
+                  - user:email
+                  - read:user
+          provider:
+            apple: 
+                authorization-uri: https://appleid.apple.com/auth/authorize?response_mode=form_post
+                token-uri: https://appleid.apple.com/auth/token
+                jwk-set-uri: https://appleid.apple.com/auth/keys
+            facebook:
+              authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
+              tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
+              userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
+app:
+  title: УУКК
+  
+  auth:
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpirationMsec: 864000000
+  oauth2:
+    # After successfully authenticating with the OAuth2 Provider,
+    # we'll be generating an auth token for the user and sending the token to the
+    # redirectUri mentioned by the client in the /oauth2/authorize request.
+    # We're not using cookies because they won't work well in mobile clients.
+    authorizedRedirectUris:
+      - http://localhost:3000/oauth2/redirect
+      - myandroidapp://oauth2/redirect
+      - myiosapp://oauth2/redirect
+      
+
+telegram:
+    logger-channel: -1001131128909
+    logger-token: 917429752:AAFK2nmeqcpbVqNxQLl7VgJDYVhAWTBXnz0
+    
+cryptographic:
+    debug: true
+    
+    
+project:
+    localization: en
+    languagues: en,ru,ar,de,fr
